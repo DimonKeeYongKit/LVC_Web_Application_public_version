@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .background{
+        position: absolute;
+        top: 80px;
+        left: -15%;
+        width: 500px;
+        height: 500px;
+        background: url("static/crawler2.png") no-repeat;
+        background-size: 100% 100%;
+        opacity: 0.1;
+        z-index:1;
+    }
+
+
+    .content-body{
+        position: absolute;
+        margin-right: 5%;
+        margin-right: 5%;
+        weight: 80%;
+        z-index: 2;
+    }
+
+</style>
+<div class="content-body">
+    {% if error_msg %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Error....</strong>
+        {{ error_msg }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <h1>Twitter Crawler</h1>
+    <p>This crawler requires the user to search for a Twitter keyword in advance and enter the keyword and the quantity of post want to crawl into the text field to run the crawl function.</p>
+    <p>Examples of keyword include <strong>malaysia, utar_malaysia, malaysia_food, malaysia_news and more. . . . .</strong></p>
+    <form method="post" onsubmit="myFunction()">
+        <div>
+            <label for="keyword" class="form-label">Keyword</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" name="keyword" id="keyword" aria-describedby="basic-addon3" placeholder="keyword" required>
+            </div>
+            <label for="quantity" class="form-label">Quantity</label>
+            <div class="input-group mb-3">
+              <input type="number" min="1" max="999" class="form-control" name="quantity" id="quantity" aria-describedby="basic-addon3" placeholder="quantity" required>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" checked="True" id="save_check" name="save_check">
+              <label class="form-check-label" for="save_check">Save to database</label>
+            </div>
+            <center>
+                <div class="gap-2 col-6 mx-auto">
+                    <a href="{{ url_for('crawler') }}" class="btn btn-outline-primary" role="button">Back to Selection</a>
+                    <button class="btn btn-outline-primary" type="submit" id="but_crawl"> Crawl it! </button>
+                </div>
+            </center>
+        </div>
+    </form>
+
+    <div id="loader" style="visibility: hidden;" class="d-flex align-items-center">
+      <strong>Loading...</strong>
+      <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+    </div>
+</div>
+
+<div class="background"></div>
+
+<script>
+function myFunction() {
+  var x = document.getElementById('loader');
+  var y = document.getElementById('but_crawl');
+  if (x.style.visibility === 'hidden') {
+    y.disabled = 'true';
+    x.style.visibility = 'visible';
+  } else {
+    x.style.visibility = 'hidden';
+  }
+}
+</script>
+
+ {% endblock %}

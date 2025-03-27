@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .background{
+        position: absolute;
+        top: 80px;
+        left: -15%;
+        width: 500px;
+        height: 500px;
+        background: url("static/preprocessing.png") no-repeat;
+        background-size: 100% 100%;
+        opacity: 0.1;
+        z-index:1;
+    }
+
+    td {
+        padding: 0 15px;
+    }
+
+    .content-body{
+        position: absolute;
+        margin-right: 5%;
+        margin-right: 5%;
+        weight: 80%;
+        z-index: 2;
+    }
+
+</style>
+<div class="content-body">
+    {% if error_msg %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Error....</strong>
+        {{ error_msg }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <h1>Preprocessing Data</h1>
+    <br/>
+    <p>This preprocessing data module will be executed first before progress to the analysis part. This module is mainly
+        responsible for processing data and sorting the data to meet the input conditions of the analyzer. At the same
+        time, this module will remove some unnecessary or useless content for the analysis results, such as web links,
+        hashtags, and so on. This can avoid affecting the analysis results of the analyzer of the system and reduce the
+        burden of the analyzer for analyzing large amounts of data.</p>
+    <br/>
+    <br/>
+    <center>
+        <form method="post">
+
+            <table>
+                <tr>
+                    <td>
+                        <input type="radio" id="radio_facebook" name="platform_selection" value="Facebook">
+                        <label for="radio_facebook"> Facebook</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="radio_reddit" name="platform_selection" value="Reddit">
+                        <label for="radio_reddit"> Reddit</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="radio_twitter" name="platform_selection" value="Twitter">
+                        <label for="radio_twitter"> Twitter</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="{{url_for('static', filename='fb.png')}}"  width="150" height="150"/>
+                    </td>
+                    <td>
+                        <img src="{{url_for('static', filename='reddit.png')}}" width="150" height="150"/>
+                    </td>
+                    <td>
+                        <img src="{{url_for('static', filename='twitter.png')}}" width="150" height="150"/>
+                    </td>
+                </tr>
+            </table>
+
+            <br>
+
+            <div class="gap-2 col-6 mx-auto">
+                <button class="btn btn-outline-primary" type="submit">Load dataset</button>
+            </div>
+        </form>
+    </center>
+</div>
+
+<div class="background"></div>
+
+
+ {% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<center>
+  <br/>
+  <img src="{{url_for('static', filename='file_error.png')}}" width="250" height="250" />
+  <br/>
+  <h1>Save File Error</h1>
+  <br/>
+  <p>Something went wrong.. You may try to <strong>restart the program</strong> to solve this problem.</p>
+  <br/>
+  <a href="{{ url_for('home') }}" class="btn btn-outline-primary" role="button">Back to Homepage</a>
+</center>
+{% endblock %}

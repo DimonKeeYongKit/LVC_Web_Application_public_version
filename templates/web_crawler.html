@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .background{
+        position: absolute;
+        top: 80px;
+        left: -15%;
+        width: 500px;
+        height: 500px;
+        background: url("static/crawler2.png") no-repeat;
+        background-size: 100% 100%;
+        opacity: 0.1;
+        z-index:1;
+    }
+
+    td {
+        padding: 0 15px;
+    }
+
+    .content-body{
+        position: absolute;
+        margin-right: 5%;
+        margin-right: 5%;
+        weight: 80%;
+        z-index: 2;
+    }
+
+</style>
+<div class="content-body">
+    {% if error_msg %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Error....</strong>
+        {{ error_msg }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <h1>Web Crawler</h1>
+    <br/>
+    <p>This module may allow the user to select what type of social media platform to crawl the post or content that is
+        published by the users of the social media platform. There are a minimum three selections for users to select which
+        platform to crawl, which are Facebook, Reddit and Twitter. All these contents or posts will be organized, neatly
+        arranged, and then save all these data into the local device dataset. This will eliminate the need for users to
+        manually collect these data.</p>
+    <br/>
+    <br/>
+    <center>
+        <form method="post">
+
+            <table>
+                <tr>
+                    <td>
+                        <input type="radio" id="radio_facebook" name="platform_selection" value="Facebook">
+                        <label for="radio_facebook"> Facebook</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="radio_reddit" name="platform_selection" value="Reddit">
+                        <label for="radio_reddit"> Reddit</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="radio_twitter" name="platform_selection" value="Twitter">
+                        <label for="radio_twitter"> Twitter</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="{{url_for('static', filename='fb.png')}}"  width="150" height="150"/>
+                    </td>
+                    <td>
+                        <img src="{{url_for('static', filename='reddit.png')}}" width="150" height="150"/>
+                    </td>
+                    <td>
+                        <img src="{{url_for('static', filename='twitter.png')}}" width="150" height="150"/>
+                    </td>
+                </tr>
+            </table>
+
+            <br>
+
+            <div class="gap-2 col-6 mx-auto">
+                <button class="btn btn-outline-primary" type="submit" value="new" name="submit_btn"> New page </button>
+                <button class="btn btn-outline-info" type="submit" value="exist" name="submit_btn"> Exist page </button>
+            </div>
+        </form>
+    </center>
+</div>
+
+<div class="background"></div>
+
+ {% endblock %}

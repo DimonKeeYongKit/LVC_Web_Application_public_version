@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+        .navbar {
+          overflow: hidden;
+          background-color: #333;
+          position: fixed; /* Set the navbar to fixed position */
+          top: 0; /* Position the navbar at the top of the page */
+          width: 100%; /* Full width */
+          z-index: 4;
+        }
+
+        body{
+            overflow-x: hidden;
+        }
+
+        .paralax{
+            position: absolute;
+            height: 100%;
+        }
+
+        .paralax-item{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 50px;
+            left: 0;
+        }
+
+        .p-item1{
+            background: url("static/m_1.png") center/cover no-repeat;
+        }
+
+        .p-item3{
+            background: url("static/m_3.png") bottom/100% no-repeat;
+            background-size: cover;
+            background-position: center;
+            z-index: 3;
+        }
+
+
+        @keyframes marquee{
+            0%{
+                transform: translate3d(0,0,0);
+            }
+            100%{
+                transform: translate3d(-200vw,0,0);
+            }
+        }
+
+
+        .p-item4{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1000%;
+            height: 100%;
+            content: '';
+            background: url("static/fog_2.png") repeat-x;
+            background-size: contain;
+            background-position: center;
+            animation: marquee 20s linear infinite;
+        }
+        .p-item4::before{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1000%;
+            height: 100%;
+            content: '';
+            background: url("static/fog_2.png") repeat-x;
+            background-size: contain;
+            background-position: center;
+            animation: marquee 20s linear infinite;
+            z-index:2;
+        }
+
+
+        .container{
+            position: relative;
+            z-index: 1;
+            max-width: 1050px;
+            margin: 0 auto;
+            margin-top: 20vh;
+        }
+
+        .content-header{
+            font-family: sans-serif;
+            color: white;
+            text-align: center !important;
+            text-transform: uppercase;
+            margin-right: -50%;
+
+        }
+
+        .content-header h1{
+            font-size: 50px;
+            font-weight: 300;
+            color: white;
+            margin-bottom: 400px;
+        }
+
+        .content-header h3{
+            text-align: left;
+            font-size: 18px;
+            text-transform: none;
+            margin-left: 30%;
+            max-width: 700px;
+            color: #F0F0F0;
+            margin-bottom: 80px;
+        }
+
+        .content {
+            text-align: left;
+            font-size: 18px;
+            text-transform: none;
+            margin-left: 50%;
+            max-width: 700px;
+            color: black;
+            margin-bottom: 80px;
+        }
+
+        .center {
+          margin-left: auto;
+          margin-right: auto;
+        }
+    </style>
+
+<body>
+<div class="paralax">
+    <div class="paralax-item p-item1"></div>
+    <div class="paralax-item p-item2"></div>
+    <div class="paralax-item p-item3"></div>
+    <div class="paralax-item p-item4"></div>
+</div>
+<div class="container">
+    <div class="content-header">
+        <h1>Light Verb Construction<br> Web Application</h1>
+        <h2>Introduction</h2>
+        <br>
+        <h3>Light Verb Construction(LVC) web application is an online web application that mainly focuses on providing
+                    the light verb construction extraction functionality. This web application helps linguists to simplify the corpus data
+            collection and set up a platform for linguists to share data and information. The biggest feature of this system is
+            that it has built-in algorithms to automatically recognize Malaysian English Light Verbs, which is one of the
+            famous topics for linguists to make analysis and research in Malaysia. This web application also has a great
+            contribution to the field of artificial intelligence, especially natural language processing, which includes
+            algorithms and techniques used and executed. This is also very helpful for Malaysia's future technological
+            development in these related professional fields.</h3>
+    </div>
+    <div class="content">
+
+        <table class="center">
+            <tr>
+                <td style="text-align: center;" >
+                    <img src="{{url_for('static', filename='crawler.png')}}" width="100" height="100" />
+                </td>
+                <td style="text-align: center;">
+                    <img src="{{url_for('static', filename='arrow.png')}}" width="50" height="=50"/>
+                </td>
+                <td style="text-align: center;">
+                    <img src="{{url_for('static', filename='preprocessing.png')}}" width="100" height="100"/>
+                </td>
+                <td style="text-align: center;">
+                    <img src="{{url_for('static', filename='arrow.png')}}" width="50" height="=50" />
+                </td>
+                <td style="text-align: center;">
+                    <img src="{{url_for('static', filename='analysis.png')}}" width="100" height="100"/>
+                </td>
+                <td style="text-align: center;">
+                    <img src="{{url_for('static', filename='arrow.png')}}" width="50" height="=50"/>
+                </td>
+                <td style="text-align: center;">
+                    <img src="{{url_for('static', filename='graphical.png')}}" width="100" height="100"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">
+                    <p>Web Crawler</p>
+                </td>
+                <td>
+
+                </td>
+                <td style="text-align: center;">
+                    <p>Preprocessing Data</p>
+                </td>
+                <td>
+
+                </td>
+                <td style="text-align: center;">
+                    <p>LVC Analysis</p>
+                </td>
+                <td>
+
+                </td>
+                <td style="text-align: center;">
+                    <p>Graphical Analysis result</p>
+                </td>
+            </tr>
+        </table>
+        <span></span>
+    </div>
+</div>
+<script>
+  window.onload = function() {
+
+  window.addEventListener('scroll', function(e) {
+
+    let s = this.scrollY;
+    let w = this.outerWidth;
+    let h = document.getElementsByClassName('paralax')[0].clientWidth;
+    let h_b = document.getElementsByClassName('container')[0].clientWidth;
+    let p = s/h*100;
+    let p_b = s/h_b*100;
+    let opas = 1-1/100*p_b;
+    let z_1 = 1 + (w / 10000 * p_b);
+    document.getElementsByClassName('p-item4')[0].style= `transform: scale(${z_1});opacity: ${opas}`;
+    let z_2 = 1+(w/5000000*p);
+    document.getElementsByClassName('p-item1')[0].style= `transform: scale(${z_2})`;
+    let hr = w/2000*p_b;
+    let z_3 = 1+(w*0.000005*p_b);
+    document.getElementsByClassName('p-item2')[0].style= `transform: translate3d(${hr}px,0,0) scale(${z_3})`;
+    let hr_2 = w/1500*p_b;
+    let z_4 = 1+(w*0.00001*p_b);
+    document.getElementsByClassName('p-item3')[0].style= `transform: translate3d(${hr_2}px,0,0) scale(${z_4})`;
+  })
+
+}
+
+
+</script>
+
+</body>
+{% endblock %}

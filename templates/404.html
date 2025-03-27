@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<center>
+  <br/>
+  <img src="{{url_for('static', filename='404.png')}}" width="450" height="200" />
+  <br/>
+  <h1>404 Page Not Found</h1>
+  <p>Something Went Wrong - Try Again...</p>
+  <br/>
+  <a href="{{ url_for('home') }}" class="btn btn-outline-primary" role="button">Back to Homepage</a>
+</center>
+{% endblock %}

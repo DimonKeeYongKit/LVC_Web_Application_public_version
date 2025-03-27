@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .background{
+        position: absolute;
+        top: 80px;
+        left: -15%;
+        width: 500px;
+        height: 500px;
+        background: url("static/preprocessing.png") no-repeat;
+        background-size: 100% 100%;
+        opacity: 0.1;
+        z-index:1;
+    }
+
+
+    .content-body{
+        position: absolute;
+        margin-right: 5%;
+        margin-right: 5%;
+        width: 80%;
+        z-index: 2;
+    }
+
+    table {
+        width:80%;
+    }
+
+
+    .checkbox-in-table {
+        width:100px;
+        text-align: center;
+
+    }
+
+    .show-in-table {
+        padding-left:60px;
+    }
+
+</style>
+
+<div class="content-body">
+    {% if error_msg %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Error....</strong>
+        {{ error_msg }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <h1>Preprocessing Data</h1>
+    <br/>
+    <h4>Platform          : {{ platform }}</h4>
+    <h4>Total exist ID(s) : {{ length }}</h4>
+    <br/>
+    <form method="post">
+      <table  class="table table-striped table-hover ">
+        <tr>
+            <th><input type="checkbox" id="checkAll" onclick="selects()">Select All</th>
+            <th class="show-in-table">ID</th>
+        </tr>
+          {% for i in range(0,length) %}
+        <tr>
+            <td class="checkbox-in-table"><input type="checkbox" name="exist_list" value="{{ data[i] }}"></td>
+            <td class="show-in-table">{{ data[i] }}</td>
+
+        </tr>
+        {% endfor %}
+
+      </table>
+        <center>
+            <div class="gap-2 col-6 mx-auto">
+                <a href="{{ url_for('preprocessing_platform_selection') }}" class="btn btn-outline-primary" role="button">Back to Selection</a>
+                <button class="btn btn-outline-primary" type="submit">Preview dataset</button>
+            </div>
+        </center>
+    </form>
+</div>
+
+<div class="background"></div>
+
+
+<script type="text/javascript">
+    function selects(){
+        var ele = document.getElementsByName('exist_list');
+        var x = document.getElementById('checkAll');
+        if (x.checked === true) {
+            for(var i=0; i<ele.length; i++){
+                if(ele[i].type=='checkbox')
+                    ele[i].checked=true;
+            }
+        }else {
+            for(var i=0; i<ele.length; i++){
+                if(ele[i].type=='checkbox')
+                    ele[i].checked=false;
+
+            }
+        }
+    }
+</script>
+
+{% endblock %}

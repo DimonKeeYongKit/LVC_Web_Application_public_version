@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<center>
+  <br/>
+  <img src="{{url_for('static', filename='downloaded.png')}}" width="250" height="250" />
+  <br/>
+  <h1>File successfully saved</h1>
+  <br/>
+  <p>You can find the file in the location you just saved</p>
+  <br/>
+  <p>The file location is <strong>{{ file_path }}</strong></p>
+  <br/>
+  <a href="{{ url_for('home') }}" class="btn btn-outline-primary" role="button">Back to Homepage</a>
+</center>
+{% endblock %}
